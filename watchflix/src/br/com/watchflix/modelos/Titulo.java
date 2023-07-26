@@ -1,6 +1,6 @@
 package br.com.watchflix.modelos;
 
-public class Titulo {
+public class Titulo implements Comparable<Titulo> {
 
 	private String nome;
 	private int anoDeLancamento;
@@ -18,8 +18,8 @@ public class Titulo {
 
 	public void exibeFichaTecnica() {
 		System.out.println(nome);
-		System.out.println("Ano de Lançamento: " + anoDeLancamento);
-		System.out.println("Duração: " + duracaoEmMinutos + " minutos");
+		System.out.println("Ano de Lançamento:" + anoDeLancamento);
+		System.out.println("Duração:" + duracaoEmMinutos + " minutos");
 
 	}
 
@@ -80,14 +80,19 @@ public class Titulo {
 		totalDeAvaliacoes++;
 	}
 
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+
 	public double pegaMedia() {
-		double media = somaDasAvaliacoes / totalDeAvaliacoes;
+		double media = Math.round(somaDasAvaliacoes / totalDeAvaliacoes);
 		return media;
 	}
 
 	@Override
-	public String toString() {
-		return nome;
+	public int compareTo(Titulo outroTitulo) {
+		return this.getNome().compareTo(outroTitulo.getNome());
 	}
 
 }
